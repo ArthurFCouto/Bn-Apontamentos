@@ -1,10 +1,10 @@
-﻿using BN.Apontamentos.Application.PlanosDeCorte.Data;
-using MediatR;
+﻿using BN.Apontamentos.Application.Common.Queries;
+using BN.Apontamentos.Application.PlanosDeCorte.Data;
 
 namespace BN.Apontamentos.Application.PlanosDeCorte.Queries
 {
     public class ListarPlanoDeCorteQuery
-        : IRequest<IEnumerable<ListarPlanoDeCorteResponse>>
+        : IQueryRequest<IEnumerable<ListarPlanoDeCorteResponse>>
     {
         public string Descricao { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿using BN.Apontamentos.Application.Trechos.Data;
+﻿using BN.Apontamentos.Application.Trechos.Queries;
 using BN.Apontamentos.Application.Trechos.Validators;
 using FluentAssertions;
 using FluentValidation.Results;
@@ -20,7 +20,7 @@ namespace BN.Apontamentos.UnitTests.Applications.Trechos.Validators
         public void ListarTrechoValidator_IdPlanoDeCorte_Tests(int id)
         {
             // Arrange
-            ListarTrechoRequest request = new() { IdPlanoDeCorte = id };
+            ListarTrechoQuery request = new() { IdPlanoDeCorte = id };
 
             // Act
             ValidationResult result = validator.Validate(request);

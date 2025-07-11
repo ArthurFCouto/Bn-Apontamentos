@@ -10,6 +10,7 @@ namespace BN.Apontamentos.Application.Trechos.Mappings
         {
             config.NewConfig<ListarTrechoEntity, ListarTrechoResponse>()
                   .Map(dest => dest.IdTrecho, src => src.Id_trecho)
+                  .Map(dest => dest.IdPlanoDeCorte, src => src.Id_plano_de_corte)
                   .Map(dest => dest.IdentificacaoCabo, src => src.Nm_trecho)
                   .Map(dest => dest.TagPrevisto, src => src.Nm_tag_bobina)
                   .Map(dest => dest.Origem, src => src.Nm_origem)

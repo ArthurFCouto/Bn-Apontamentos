@@ -1,4 +1,5 @@
 ﻿using BN.Apontamentos.API.Extensions;
+using BN.Apontamentos.Application.Common.Handlers;
 using BN.Apontamentos.Application.PlanosDeCorte.Data;
 using BN.Apontamentos.Application.PlanosDeCorte.Queries;
 using BN.Apontamentos.Domain.PlanosDeCorte.Entities;
@@ -10,7 +11,7 @@ using System.Data;
 namespace BN.Apontamentos.Infrastructure.PlanosDeCorte
 {
     internal class ListarPlanoDeCorteRepository
-        : IRequestHandler<ListarPlanoDeCorteQuery, IEnumerable<ListarPlanoDeCorteResponse>>
+        : QueryHandler<ListarPlanoDeCorteQuery, IEnumerable<ListarPlanoDeCorteResponse>>
     {
         private readonly IDapperConnectionFactory dapperConnectionFactory;
 
@@ -18,7 +19,8 @@ namespace BN.Apontamentos.Infrastructure.PlanosDeCorte
         {
             this.dapperConnectionFactory = dapperConnectionFactory;
         }
-        public async Task<IEnumerable<ListarPlanoDeCorteResponse>> Handle(
+
+        protected override async Task<IEnumerable<ListarPlanoDeCorteResponse>> ExecuteAsync(
             ListarPlanoDeCorteQuery request,
             CancellationToken cancellationToken)
         {
@@ -37,8 +39,10 @@ namespace BN.Apontamentos.Infrastructure.PlanosDeCorte
                     ListarPlanoDeCorteResponse response = new()
                     {
                         Id = entity.Id_plano_de_corte,
-                        Nome = entity.Nm_circuito,
-                        Circuitos = data.Select(c => c.Nm_circuito).ToList()
+                        Nome = entity.Nm_plano_de_corte,
+                        Circuitos = data.Select(c => c.Nm_circuito)
+                                        .Where(c => c is not null)
+                                        .ToList()
                     };
 
                     return response;
@@ -66,7 +70,7 @@ namespace BN.Apontamentos.Infrastructure.PlanosDeCorte
 	                LEFT JOIN PlanoDeCorteCircuito pcc ON pcc.id_plano_de_corte = pc.id_plano_de_corte
 	                LEFT JOIN Circuito c ON c.id_circuito = pcc.id_circuito
                 WHERE 1 = 1
-                    AND pc.dt_data_inativacao = NULL
+                    AND pc.dt_data_inativacao is NULL
                     {request.Descricao.AddDynamicParams("AND pc.nm_plano_de_corte = @descricao")}
                 ORDER BY pc.nm_plano_de_corte";
         }

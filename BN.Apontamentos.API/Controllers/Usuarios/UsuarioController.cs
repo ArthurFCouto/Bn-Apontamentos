@@ -1,5 +1,6 @@
-﻿using BN.Apontamentos.Application.Usuarios.Data;
-using BN.Apontamentos.Application.Usuarios.Queries;
+﻿using BN.Apontamentos.Application.Common.Responses;
+using BN.Apontamentos.Application.Usuarios.Commands;
+using BN.Apontamentos.Application.Usuarios.Data;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,21 +22,23 @@ namespace BN.Apontamentos.API.Controllers.Usuarios
         /// <summary>
         /// Faz o login do usuário e retorna o token JWT
         /// </summary>
-        /// /// <param name="query"></param>
+        /// /// <param name="request"></param>
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("login")]
-        [ProducesResponseType(typeof(LoginUsuarioResponse), 200)]
+        [ProducesResponseType(typeof(LoginUsuarioResponse), (int)ResponseStatus.Success)]
+        [ProducesResponseType(typeof(Response), (int)ResponseStatus.BadRequest)]
+        [ProducesResponseType(typeof(Response), (int)ResponseStatus.InternalServerError)]
         public async Task<IActionResult> LoginUsuario(
-            [FromBody] LoginUsuarioQuery query)
+            [FromBody] LoginUsuarioRequest request)
         {
-            LoginUsuarioRequest request = new()
+            LoginUsuarioCommand command = new()
             {
-                Matricula = query.Matricula,
-                Senha = query.Senha
+                Matricula = request.Matricula,
+                Senha = request.Senha
             };
 
-            return Ok(await mediator.Send(request));
+            return Ok(await mediator.Send(command));
         }
     }
 }

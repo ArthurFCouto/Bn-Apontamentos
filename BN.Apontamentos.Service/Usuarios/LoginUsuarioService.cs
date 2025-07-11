@@ -1,11 +1,13 @@
-﻿using BN.Apontamentos.Application.Usuarios.Data;
+﻿using BN.Apontamentos.Application.Common.Handlers;
+using BN.Apontamentos.Application.Common.Responses;
+using BN.Apontamentos.Application.Usuarios.Commands;
+using BN.Apontamentos.Application.Usuarios.Data;
 using BN.Apontamentos.Infrastructure.Security.Interfaces;
-using MediatR;
 
 namespace BN.Apontamentos.Service.Usuarios
 {
-    public class LoginUsuarioService
-    : IRequestHandler<LoginUsuarioRequest, LoginUsuarioResponse>
+    internal class LoginUsuarioService
+        : CommandHandler<LoginUsuarioCommand, LoginUsuarioResponse>
     {
         private readonly IJwtTokenGenerator jwtTokenGenerator;
 
@@ -14,17 +16,17 @@ namespace BN.Apontamentos.Service.Usuarios
             this.jwtTokenGenerator = jwtTokenGenerator;
         }
 
-        public Task<LoginUsuarioResponse> Handle(
-            LoginUsuarioRequest request,
+        protected override async Task<Response<LoginUsuarioResponse>> ExecuteAsync(
+            LoginUsuarioCommand request,
             CancellationToken cancellationToken)
         {
             string token = jwtTokenGenerator.GenerateToken(1, 10000000, "BN Apontador", "administrador");
 
-            return Task.FromResult(new LoginUsuarioResponse
+            return Success(new LoginUsuarioResponse
             {
                 Token = token,
-                Nome = "Nome",
-                Matricula = request.Matricula
+                Nome = "Teste",
+                Matricula = 10000000
             });
         }
     }

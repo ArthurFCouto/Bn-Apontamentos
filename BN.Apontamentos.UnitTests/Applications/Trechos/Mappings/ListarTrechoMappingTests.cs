@@ -27,12 +27,14 @@ namespace BN.Apontamentos.UnitTests.Applications.Trechos.Mappings
                 Id_destino = 2,
                 Cd_fase = 'R',
                 No_comprimento_fase = 270,
+                Id_plano_de_corte = 1,
                 No_comprimento_todas_fases = 810
             };
 
             ListarTrechoResponse expected = new()
             {
                 IdTrecho = 1,
+                IdPlanoDeCorte = 1,
                 IdentificacaoCabo = "DS01.C1.ITS2.EM1(R)",
                 Secao = 240,
                 TagPrevisto = "DS01-500-B1",

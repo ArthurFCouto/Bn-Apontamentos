@@ -1,4 +1,4 @@
-﻿using BN.Apontamentos.Application.Usuarios.Data;
+﻿using BN.Apontamentos.Application.Usuarios.Commands;
 using BN.Apontamentos.Application.Usuarios.Validators;
 using FluentAssertions;
 using FluentValidation.Results;
@@ -21,7 +21,7 @@ namespace BN.Apontamentos.UnitTests.Applications.Usuarios.Validators
         {
             // Arrange
             string mensagem = matricula < 10000000 ? "A matrícula deve ser maior que 1.000.000-0." : "A matricula deve ser até 9.999.999-9";
-            LoginUsuarioRequest request = new() { Matricula = matricula };
+            LoginUsuarioCommand request = new() { Matricula = matricula };
 
             // Act
             ValidationResult result = validator.Validate(request);
@@ -44,7 +44,7 @@ namespace BN.Apontamentos.UnitTests.Applications.Usuarios.Validators
                 "0" => "A senha deve ter pelo menos 8 caracteres.",
                 _ => "A senha deve ter no máximo 32 caracteres."
             };
-            LoginUsuarioRequest request = new()
+            LoginUsuarioCommand request = new()
             {
                 Matricula = 88888880,
                 Senha = senha

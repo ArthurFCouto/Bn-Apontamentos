@@ -1,4 +1,5 @@
-﻿using BN.Apontamentos.Application.PlanosDeCorte.Data;
+﻿using BN.Apontamentos.Application.Common.Responses;
+using BN.Apontamentos.Application.PlanosDeCorte.Data;
 using BN.Apontamentos.Application.PlanosDeCorte.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -25,7 +26,8 @@ namespace BN.Apontamentos.API.Controllers.PlanosDeCorte
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [ProducesResponseType(typeof(ListarPlanoDeCorteResponse), 200)]
+        [ProducesResponseType(typeof(IEnumerable<ListarPlanoDeCorteResponse>), (int)ResponseStatus.Success)]
+        [ProducesResponseType(typeof(Response), (int)ResponseStatus.NoContent)]
         public async Task<IActionResult> ListarPlanoDeCorte(
             [FromQuery] ListarPlanoDeCorteQuery query)
         {

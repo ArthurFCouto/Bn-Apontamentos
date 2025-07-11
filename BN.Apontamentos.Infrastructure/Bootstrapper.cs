@@ -1,4 +1,5 @@
-﻿using BN.Apontamentos.Infrastructure.Connection;
+﻿using BN.Apontamentos.Domain.UnitOfWork;
+using BN.Apontamentos.Infrastructure.Connection;
 using BN.Apontamentos.Infrastructure.Context;
 using BN.Apontamentos.Infrastructure.Persistence;
 using BN.Apontamentos.Infrastructure.Security.Interfaces;
@@ -27,6 +28,7 @@ namespace BN.Apontamentos.Infrastructure
                 o.ConnectionString = connectionString);
 
             services.AddScoped<IDapperConnectionFactory, DapperConnectionFactory>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

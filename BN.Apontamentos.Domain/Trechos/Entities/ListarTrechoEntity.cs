@@ -12,6 +12,7 @@
         public string Nm_destino { get; set; }
         public char Cd_fase { get; set; }
         public float No_comprimento_fase { get; set; }
+        public int Id_plano_de_corte { get; set; }
         public float No_comprimento_todas_fases { get; set; }
     }
 }

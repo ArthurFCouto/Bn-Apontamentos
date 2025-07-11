@@ -1,4 +1,5 @@
-﻿using BN.Apontamentos.Application.Trechos.Data;
+﻿using BN.Apontamentos.Application.Common.Responses;
+using BN.Apontamentos.Application.Trechos.Data;
 using BN.Apontamentos.Application.Trechos.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -25,16 +26,12 @@ namespace BN.Apontamentos.API.Controllers.Trechos
         /// <param name="query"></param>
         /// <returns></returns>
         [HttpGet]
-        [ProducesResponseType(typeof(ListarTrechoResponse), 200)]
+        [ProducesResponseType(typeof(IEnumerable<ListarTrechoResponse>), (int)ResponseStatus.Success)]
+        [ProducesResponseType(typeof(Response), (int)ResponseStatus.NoContent)]
         public async Task<IActionResult> ListarTrechos(
             [FromQuery] ListarTrechoQuery query)
         {
-            ListarTrechoRequest request = new()
-            {
-                IdPlanoDeCorte = query.IdPlanoDeCorte
-            };
-
-            return Ok(await mediator.Send(request));
+            return Ok(await mediator.Send(query));
         }
     }
 }

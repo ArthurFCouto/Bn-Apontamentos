@@ -2,6 +2,8 @@
 {
     public partial class Usuario
     {
+        protected Usuario() { }
+
         public virtual int IdUsuario { get; private protected set; }
         public virtual string Nome { get; private protected set; }
         public virtual int Matricula { get; private protected set; }

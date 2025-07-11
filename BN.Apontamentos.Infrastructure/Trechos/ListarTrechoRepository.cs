@@ -1,16 +1,17 @@
-﻿using BN.Apontamentos.Application.Extensions;
+﻿using BN.Apontamentos.Application.Common.Handlers;
+using BN.Apontamentos.Application.Extensions;
 using BN.Apontamentos.Application.Trechos.Data;
+using BN.Apontamentos.Application.Trechos.Queries;
 using BN.Apontamentos.Domain.Trechos.Entities;
 using BN.Apontamentos.Infrastructure.Persistence;
 using Dapper;
 using Mapster;
-using MediatR;
 using System.Data;
 
 namespace BN.Apontamentos.Infrastructure.Trechos
 {
     internal class ListarTrechoRepository
-        : IRequestHandler<ListarTrechoRequest, IEnumerable<ListarTrechoResponse>>
+        : QueryHandler<ListarTrechoQuery, IEnumerable<ListarTrechoResponse>>
     {
         private readonly IDapperConnectionFactory dapperConnectionFactory;
 
@@ -19,8 +20,8 @@ namespace BN.Apontamentos.Infrastructure.Trechos
             this.dapperConnectionFactory = dapperConnectionFactory;
         }
 
-        public async Task<IEnumerable<ListarTrechoResponse>> Handle(
-            ListarTrechoRequest request,
+        protected override async Task<IEnumerable<ListarTrechoResponse>> ExecuteAsync(
+            ListarTrechoQuery request,
             CancellationToken cancellationToken)
         {
             DynamicParameters parametros = ObterParametros(request);
@@ -45,7 +46,7 @@ namespace BN.Apontamentos.Infrastructure.Trechos
             return entities.Adapt<IEnumerable<ListarTrechoResponse>>();
         }
 
-        private static DynamicParameters ObterParametros(ListarTrechoRequest request)
+        private static DynamicParameters ObterParametros(ListarTrechoQuery request)
         {
             DynamicParameters parametros = new();
             parametros.Add("IdPlanoDeCorte", request.IdPlanoDeCorte, DbType.String);
@@ -53,7 +54,7 @@ namespace BN.Apontamentos.Infrastructure.Trechos
             return parametros;
         }
 
-        private static string ObterQuery(ListarTrechoRequest request)
+        private static string ObterQuery(ListarTrechoQuery request)
         {
             return @$"
                 SELECT

@@ -4,6 +4,8 @@ namespace BN.Apontamentos.Domain.AreasOperacionais.Schemas
 {
     public partial class AreaOperacional
     {
+        protected AreaOperacional() { }
+
         public virtual int IdAreaOperacional { get; private protected set; }
         public virtual string Descricao { get; private protected set; }
         public virtual DateTime DataInclusao { get; private protected set; }

@@ -1,10 +1,10 @@
 ﻿using BN.Apontamentos.Application.Configuration;
-using BN.Apontamentos.Application.Trechos.Data;
+using BN.Apontamentos.Application.Trechos.Queries;
 using FluentValidation;
 
 namespace BN.Apontamentos.Application.Trechos.Validators
 {
-    public class ListarTrechoValidator : BaseValidator<ListarTrechoRequest>
+    public class ListarTrechoValidator : BaseValidator<ListarTrechoQuery>
     {
         public ListarTrechoValidator()
         {

@@ -3,6 +3,7 @@
     public class ListarTrechoResponse
     {
         public int IdTrecho { get; set; }
+        public int IdPlanoDeCorte { get; set; }
         public string IdentificacaoCabo { get; set; }
         public string TagPrevisto { get; set; }
         public string Origem { get; set; }

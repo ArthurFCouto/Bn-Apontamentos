@@ -1,10 +1,10 @@
 ﻿using BN.Apontamentos.Application.Configuration;
-using BN.Apontamentos.Application.Usuarios.Data;
+using BN.Apontamentos.Application.Usuarios.Commands;
 using FluentValidation;
 
 namespace BN.Apontamentos.Application.Usuarios.Validators
 {
-    public class LoginUsuarioValidator : BaseValidator<LoginUsuarioRequest>
+    public class LoginUsuarioValidator : BaseValidator<LoginUsuarioCommand>
     {
         public LoginUsuarioValidator()
         {

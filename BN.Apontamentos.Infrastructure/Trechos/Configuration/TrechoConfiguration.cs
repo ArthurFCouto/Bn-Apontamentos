@@ -50,6 +50,10 @@ namespace BN.Apontamentos.Infrastructure.Trechos.Configuration
                 .HasColumnName("no_comprimento_fase")
                 .IsRequired();
 
+            builder.Property(p => p.IdCircuito)
+                .HasColumnName("id_circuito")
+                .IsRequired();
+
             builder.HasOne(t => t.PlanoDeCorte)
                 .WithMany(p => p.Trechos)
                 .HasForeignKey(t => t.IdPlanoDeCorte);
@@ -64,8 +68,11 @@ namespace BN.Apontamentos.Infrastructure.Trechos.Configuration
 
             builder.HasOne(t => t.Bobina)
                 .WithMany(p => p.Trechos)
-                .HasForeignKey(t => t.IdBobina)
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(t => t.IdBobina);
+
+            builder.HasOne(t => t.Circuito)
+                .WithMany(c => c.Trechos)
+                .HasForeignKey(t => t.IdCircuito);
         }
     }
 }

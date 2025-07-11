@@ -4,6 +4,8 @@ namespace BN.Apontamentos.Domain.PlanosDeCorte.Schemas
 {
     public class PlanoDeCorte
     {
+        protected PlanoDeCorte() { }
+
         public virtual int IdPlanoDeCorte { get; private protected set; }
         public virtual string Nome { get; private protected set; }
         public virtual DateTime DataInclusao { get; private protected set; }
