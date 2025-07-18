@@ -15,8 +15,8 @@ namespace BN.Apontamentos.Infrastructure.Apontamentos.Configuration
             builder.Property(p => p.IdApontamento)
                 .HasColumnName("id_apontamento");
 
-            builder.Property(p => p.NomeCircuito)
-                .HasColumnName("nm_circuito");
+            builder.Property(p => p.NumeroCircuito)
+                .HasColumnName("no_circuito");
 
             builder.Property(p => p.IdentificacaoCabo)
                 .HasColumnName("ds_descricao_cabo");

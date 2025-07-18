@@ -44,7 +44,7 @@ namespace BN.Apontamentos.API.Controllers.Apontamentos
         [ProducesResponseType(typeof(IEnumerable<ListarApontamentoResponse>), (int)ResponseStatus.Success)]
         [ProducesResponseType(typeof(Response), (int)ResponseStatus.NoContent)]
         public async Task<IActionResult> ListarApontamentos(
-            [FromBody] ListarApontamentoQuery query)
+            [FromQuery] ListarApontamentoQuery query)
         {
             return Ok(await mediator.Send(query));
         }

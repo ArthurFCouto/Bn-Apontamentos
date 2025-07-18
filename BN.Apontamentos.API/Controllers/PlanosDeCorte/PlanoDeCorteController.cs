@@ -33,5 +33,19 @@ namespace BN.Apontamentos.API.Controllers.PlanosDeCorte
         {
             return Ok(await mediator.Send(query));
         }
+
+        /// <summary>
+        /// Busca os planos de corte cadastrados com os trechos.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        [HttpGet("trecho")]
+        [ProducesResponseType(typeof(IEnumerable<ListarPlanoDeCorteComTrechoResponse>), (int)ResponseStatus.Success)]
+        [ProducesResponseType(typeof(Response), (int)ResponseStatus.NoContent)]
+        public async Task<IActionResult> ListarPlanoDeCorteComTrecho(
+            [FromQuery] ListarPlanoDeCorteComTrechoQuery query)
+        {
+            return Ok(await mediator.Send(query));
+        }
     }
 }

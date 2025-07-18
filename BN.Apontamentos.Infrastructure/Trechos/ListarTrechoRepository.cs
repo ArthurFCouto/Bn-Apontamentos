@@ -35,7 +35,7 @@ namespace BN.Apontamentos.Infrastructure.Trechos
                 .ToList()
                 .ForEach(grupo =>
                 {
-                    float comprimentoFase = grupo.Sum(data => data.No_comprimento_fase);
+                    decimal comprimentoFase = grupo.Sum(data => data.No_comprimento_fase);
 
                     foreach (ListarTrechoEntity entity in grupo)
                     {

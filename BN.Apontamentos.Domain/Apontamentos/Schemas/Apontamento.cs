@@ -24,7 +24,7 @@ namespace BN.Apontamentos.Domain.Apontamentos.Schemas
             PlanoDeCorte = planoDeCorte;
             Trecho = trecho;
 
-            NomeCircuito = trecho.Circuito.Nome;
+            NumeroCircuito = trecho.Circuito.IdCircuito;
             IdentificacaoCabo = trecho.Nome;
             TagPrevisto = trecho.Bobina.Tag;
             TagReal = tagReal;
@@ -42,7 +42,7 @@ namespace BN.Apontamentos.Domain.Apontamentos.Schemas
         }
 
         public virtual int IdApontamento { get; set; }
-        public virtual string NomeCircuito { get; set; }
+        public virtual int NumeroCircuito { get; set; }
         public virtual string IdentificacaoCabo { get; set; }
         public virtual string TagPrevisto { get; set; }
         public virtual string TagReal { get; set; }

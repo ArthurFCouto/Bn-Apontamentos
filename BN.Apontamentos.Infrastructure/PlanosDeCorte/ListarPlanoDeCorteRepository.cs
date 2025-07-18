@@ -5,7 +5,6 @@ using BN.Apontamentos.Application.PlanosDeCorte.Queries;
 using BN.Apontamentos.Domain.PlanosDeCorte.Entities;
 using BN.Apontamentos.Infrastructure.Persistence;
 using Dapper;
-using MediatR;
 using System.Data;
 
 namespace BN.Apontamentos.Infrastructure.PlanosDeCorte
@@ -40,7 +39,7 @@ namespace BN.Apontamentos.Infrastructure.PlanosDeCorte
                     {
                         Id = entity.Id_plano_de_corte,
                         Nome = entity.Nm_plano_de_corte,
-                        Circuitos = data.Select(c => c.Nm_circuito)
+                        Circuitos = data.Select(c => c.Id_circuito)
                                         .Where(c => c is not null)
                                         .ToList()
                     };
@@ -65,12 +64,11 @@ namespace BN.Apontamentos.Infrastructure.PlanosDeCorte
                 SELECT
                     pc.id_plano_de_corte,
 	                pc.nm_plano_de_corte,
-	                c.nm_circuito
+	                c.id_circuito
                 FROM PlanoDeCorte pc
 	                LEFT JOIN PlanoDeCorteCircuito pcc ON pcc.id_plano_de_corte = pc.id_plano_de_corte
 	                LEFT JOIN Circuito c ON c.id_circuito = pcc.id_circuito
-                WHERE 1 = 1
-                    AND pc.dt_data_inativacao is NULL
+                WHERE pc.dt_data_inativacao is NULL
                     {request.Descricao.AddDynamicParams("AND pc.nm_plano_de_corte = @descricao")}
                 ORDER BY pc.nm_plano_de_corte";
         }

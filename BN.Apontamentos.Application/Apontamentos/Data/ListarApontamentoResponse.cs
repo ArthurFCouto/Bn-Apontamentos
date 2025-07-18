@@ -3,7 +3,7 @@
     public class ListarApontamentoResponse
     {
         public int IdApontamento { get; set; }
-        public string Circuito { get; set; }
+        public int Circuito { get; set; }
         public string DescricaoCabo { get; set; }
         public string TagPrevisto { get; set; }
         public string TagReal { get; set; }

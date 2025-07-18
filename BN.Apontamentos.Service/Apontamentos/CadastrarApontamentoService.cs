@@ -64,7 +64,8 @@ namespace BN.Apontamentos.Service.Apontamentos
                 IncluirCircuito = true,
                 IncluirBobina = true,
                 IncluirOrigem = true,
-                IncluirDestino = true
+                IncluirDestino = true,
+                IncluirPlanoDeCorte = true
             };
 
             return await mediator.Send(query);

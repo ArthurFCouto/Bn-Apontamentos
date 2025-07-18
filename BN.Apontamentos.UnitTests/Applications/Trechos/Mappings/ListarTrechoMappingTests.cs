@@ -14,6 +14,7 @@ namespace BN.Apontamentos.UnitTests.Applications.Trechos.Mappings
         public void ListarTrechoMapping_Mapping_Test()
         {
             // Arrange
+            DateTime data = DateTime.Now;
             Mapper mapper = MapsterForUnitTests.GetMapper<ListarTrechoMapping>();
             ListarTrechoEntity entity = new()
             {
@@ -28,7 +29,8 @@ namespace BN.Apontamentos.UnitTests.Applications.Trechos.Mappings
                 Cd_fase = 'R',
                 No_comprimento_fase = 270,
                 Id_plano_de_corte = 1,
-                No_comprimento_todas_fases = 810
+                No_comprimento_todas_fases = 810,
+                Dt_data_inativacao = data,
             };
 
             ListarTrechoResponse expected = new()
@@ -44,7 +46,8 @@ namespace BN.Apontamentos.UnitTests.Applications.Trechos.Mappings
                 IdDestino = 2,
                 Fase = 'R',
                 ComprimentoFase = 270,
-                ComprimentoTodasFases = 810
+                ComprimentoTodasFases = 810,
+                Ativo = false,
             };
 
             // Act

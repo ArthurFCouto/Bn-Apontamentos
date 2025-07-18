@@ -20,7 +20,8 @@ namespace BN.Apontamentos.Application.Trechos.Mappings
                   .Map(dest => dest.Fase, src => src.Cd_fase)
                   .Map(dest => dest.ComprimentoFase, src => src.No_comprimento_fase)
                   .Map(dest => dest.ComprimentoTodasFases, src => src.No_comprimento_todas_fases)
-                  .Map(dest => dest.Secao, src => src.No_secao);
+                  .Map(dest => dest.Secao, src => src.No_secao)
+                  .Map(dest => dest.Ativo, src => src.Dt_data_inativacao == null);
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public IEnumerable<string> Circuitos { get; set; } = [];
+        public IEnumerable<int?> Circuitos { get; set; } = [];
 
     }
 }

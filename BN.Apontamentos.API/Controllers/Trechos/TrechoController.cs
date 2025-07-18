@@ -33,5 +33,24 @@ namespace BN.Apontamentos.API.Controllers.Trechos
         {
             return Ok(await mediator.Send(query));
         }
+
+        /// <summary>
+        /// Obtem um trecho por Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(IEnumerable<ObterTrechoPorIdResponse>), (int)ResponseStatus.Success)]
+        [ProducesResponseType(typeof(Response), (int)ResponseStatus.NoContent)]
+        public async Task<IActionResult> ObterTrechoPorId(
+            [FromRoute] string id)
+        {
+            ObterTrechoPorIdQuery query = new()
+            {
+                Id = int.TryParse(id, out int resultado) ? resultado : 0
+            };
+
+            return Ok(await mediator.Send(query));
+        }
     }
 }

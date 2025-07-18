@@ -32,8 +32,8 @@ namespace BN.Apontamentos.Infrastructure.Apontamentos
             IEnumerable<ListarApontamentoResponse> responses = entities.Select(e => new ListarApontamentoResponse
             {
                 IdApontamento = e.Id_apontamento,
-                Circuito = e.Nm_circuito,
-                DescricaoCabo = e.Ds_descricaoCabo,
+                Circuito = e.No_circuito,
+                DescricaoCabo = e.Ds_descricao_cabo,
                 TagPrevisto = e.Nm_tag_previsto,
                 TagReal = e.Nm_tag_real,
                 Origem = e.Nm_origem,
@@ -55,7 +55,7 @@ namespace BN.Apontamentos.Infrastructure.Apontamentos
         {
             DynamicParameters parametros = new();
             parametros.Add("IdPlanoDeCorte", request.IdPlanoDeCorte, DbType.String);
-            parametros.Add("IdPlanoDeCorte", request.IdTrecho, DbType.String);
+            parametros.Add("IdTrecho", request.IdTrecho, DbType.String);
 
             return parametros;
         }
@@ -65,7 +65,7 @@ namespace BN.Apontamentos.Infrastructure.Apontamentos
             return @$"
                 SELECT
 	                id_apontamento,
-	                nm_circuito,
+	                no_circuito,
 	                ds_descricao_cabo,
 	                nm_tag_previsto,
 	                nm_tag_real,
@@ -83,7 +83,7 @@ namespace BN.Apontamentos.Infrastructure.Apontamentos
                 WHERE 1 = 1
                     AND ac.dt_data_inativacao IS NULL
                     {request.IdPlanoDeCorte.AddDynamicParams("AND ac.id_plano_de_corte = @IdPlanoDeCorte")}
-                    {request.IdTrecho.AddDynamicParams("AND ac.id_plano_de_corte = @IdTrecho")}";
+                    {request.IdTrecho.AddDynamicParams("AND ac.id_trecho = @IdTrecho")}";
         }
     }
 }

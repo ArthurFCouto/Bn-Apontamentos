@@ -3,8 +3,8 @@
     public class ListarApontamentoEntity
     {
         public int Id_apontamento { get; set; }
-        public string Nm_circuito { get; set; }
-        public string Ds_descricaoCabo { get; set; }
+        public int No_circuito { get; set; }
+        public string Ds_descricao_cabo { get; set; }
         public string Nm_tag_previsto { get; set; }
         public string Nm_tag_real { get; set; }
         public string Nm_origem { get; set; }

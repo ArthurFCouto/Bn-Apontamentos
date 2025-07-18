@@ -20,13 +20,13 @@ namespace BN.Apontamentos.Service.Usuarios
             LoginUsuarioCommand request,
             CancellationToken cancellationToken)
         {
-            string token = jwtTokenGenerator.GenerateToken(1, 10000000, "BN Apontador", "administrador");
+            string token = jwtTokenGenerator.GenerateToken(1, request.Matricula, "BN Apontador", "administrador");
 
             return Success(new LoginUsuarioResponse
             {
                 Token = token,
-                Nome = "Teste",
-                Matricula = 10000000
+                Nome = "BN Apontador",
+                Matricula = request.Matricula
             });
         }
     }
