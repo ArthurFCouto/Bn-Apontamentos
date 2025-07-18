@@ -1,6 +1,8 @@
-# 🧰 BN.Apontamentos - Backend
+# 🧰 Sistema de Apontamentos - Backend
 
 API desenvolvida com .NET 8, seguindo princípios modernos de arquitetura, com foco em organização, separação de responsabilidades (CQRS), extensibilidade e padronização de respostas. Ideal para aplicações corporativas com requisitos de validação, autenticação e manutenção limpa.
+
+O objetivo da API é controlar os apontamentos registrados duranta a implantação das placas solares em uma usina solar.
 
 ---
 
@@ -129,13 +131,12 @@ dotnet test
 
 ---
 
-## 📌 Futuras Melhorias
+## 📌 Implementações futuras
 
 - Integração com Identity Server
 - Notificações por domínio (Domain Events)
 - Integração com banco NoSQL para logs
 - Cache com Redis
-- Testes de integração com WebApplicationFactory
 
 ---
 
@@ -147,4 +148,4 @@ Pull requests são bem-vindos! Crie uma branch com sua feature, envie PR e vamos
 
 ## 📄 Licença
 
-Projeto privado - uso autorizado apenas para fins educacionais e internos da empresa BN.
+Projeto privado - Uso autorizado apenas para fins educacionais.
