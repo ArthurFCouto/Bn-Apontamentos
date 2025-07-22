@@ -8,10 +8,10 @@ namespace BN.Apontamentos.Application.Trechos.Validators
     {
         public ListarTrechoValidator()
         {
-            When(x => x.IdPlanoDeCorte.HasValue, () =>
+            When(x => x.IdPlanoDeCorte.Any(), () =>
             {
                 RuleFor(x => x.IdPlanoDeCorte)
-                    .GreaterThan(0).WithMessage("O Id do Plano de Corte deve ser maior que zero.");
+                .Must(x => x.All(id => id > 0)).WithMessage("O Id do Plano de Corte deve ser maior que zero.");
             });
         }
     }

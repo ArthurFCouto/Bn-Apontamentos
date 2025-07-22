@@ -46,6 +46,8 @@ namespace BN.Apontamentos.Service.Apontamentos
                 dataLancamento: request.DataLancamento
                 );
 
+            trecho.InativarTrecho();
+
             unitOfWork.Add(apontamento);
 
             await unitOfWork.CommitAsync();

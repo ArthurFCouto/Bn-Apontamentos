@@ -19,6 +19,7 @@ namespace BN.Apontamentos.UnitTests.Applications.Trechos.Mappings
             ListarTrechoEntity entity = new()
             {
                 Id_trecho = 1,
+                No_circuito = 1,
                 Nm_trecho = "DS01.C1.ITS2.EM1(R)",
                 No_secao = 240,
                 Nm_tag_bobina = "DS01-500-B1",
@@ -36,6 +37,7 @@ namespace BN.Apontamentos.UnitTests.Applications.Trechos.Mappings
             ListarTrechoResponse expected = new()
             {
                 IdTrecho = 1,
+                Circuito = 1,
                 IdPlanoDeCorte = 1,
                 IdentificacaoCabo = "DS01.C1.ITS2.EM1(R)",
                 Secao = 240,

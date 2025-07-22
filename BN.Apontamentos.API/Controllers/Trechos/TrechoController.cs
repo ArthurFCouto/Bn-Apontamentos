@@ -23,14 +23,20 @@ namespace BN.Apontamentos.API.Controllers.Trechos
         /// <summary>
         /// Busca os trechos cadastrados.
         /// </summary>
-        /// <param name="query"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<ListarTrechoResponse>), (int)ResponseStatus.Success)]
         [ProducesResponseType(typeof(Response), (int)ResponseStatus.NoContent)]
         public async Task<IActionResult> ListarTrechos(
-            [FromQuery] ListarTrechoQuery query)
+            [FromQuery] ListarTrechoRequest request)
         {
+            ListarTrechoQuery query = new()
+            {
+                IdPlanoDeCorte = request.IdPlanoDeCorte is null
+                    ? Enumerable.Empty<int>()
+                    : request.IdPlanoDeCorte.Where(x => x.HasValue).Select(x => x.Value).ToArray()
+            };
             return Ok(await mediator.Send(query));
         }
 

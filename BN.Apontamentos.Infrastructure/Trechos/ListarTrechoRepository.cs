@@ -49,7 +49,10 @@ namespace BN.Apontamentos.Infrastructure.Trechos
         private static DynamicParameters ObterParametros(ListarTrechoQuery request)
         {
             DynamicParameters parametros = new();
-            parametros.Add("IdPlanoDeCorte", request.IdPlanoDeCorte, DbType.String);
+            if (request.IdPlanoDeCorte.Any())
+            {
+                parametros.Add("IdPlanoDeCorte", request.IdPlanoDeCorte.Select((id) => id).ToArray());
+            }
 
             return parametros;
         }
@@ -59,6 +62,8 @@ namespace BN.Apontamentos.Infrastructure.Trechos
             return @$"
                 SELECT
                     tc.id_trecho,
+                    tc.id_plano_de_corte,
+                    tc.id_circuito as no_circuito,
 	                tc.nm_trecho,
 	                bb.id_bobina,
 	                bb.nm_tag_bobina,
@@ -76,7 +81,7 @@ namespace BN.Apontamentos.Infrastructure.Trechos
 	                INNER JOIN PlanoDeCorte pdc ON pdc.id_plano_de_corte = tc.id_plano_de_corte
                 WHERE 1 = 1
                     AND tc.dt_data_inativacao IS NULL
-                    {request.IdPlanoDeCorte.AddDynamicParams("AND tc.id_plano_de_corte = @IdPlanoDeCorte")}";
+                    {request.IdPlanoDeCorte.AddDynamicParamsList("AND tc.id_plano_de_corte IN @IdPlanoDeCorte")}";
         }
     }
 }

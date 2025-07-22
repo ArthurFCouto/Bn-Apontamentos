@@ -7,5 +7,6 @@ namespace BN.Apontamentos.Application.PlanosDeCorte.Queries
         : IQueryRequest<IEnumerable<ListarPlanoDeCorteResponse>>
     {
         public string Descricao { get; set; }
+        public bool IncluirSemTrecho { get; set; }
     }
 }

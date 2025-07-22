@@ -10,5 +10,14 @@
                 clausula :
                 string.Empty;
         }
+
+        public static string AddDynamicParamsList<T>(
+             this IEnumerable<T> parametro,
+             string clausula)
+        {
+            return parametro.Any() ?
+                clausula :
+                string.Empty;
+        }
     }
 }

@@ -3,6 +3,8 @@
     public class ListarApontamentoEntity
     {
         public int Id_apontamento { get; set; }
+        public int No_total_registros { get; set; }
+        public int No_total_paginas { get; set; }
         public int No_circuito { get; set; }
         public string Ds_descricao_cabo { get; set; }
         public string Nm_tag_previsto { get; set; }

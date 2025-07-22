@@ -3,6 +3,7 @@
     public class ObterTrechoPorIdResponse
     {
         public int IdTrecho { get; set; }
+        public int IdPlanoDeCorte { get; set; }
         public int Circuito { get; set; }
         public string IdentificacaoCabo { get; set; }
         public string TagPrevisto { get; set; }

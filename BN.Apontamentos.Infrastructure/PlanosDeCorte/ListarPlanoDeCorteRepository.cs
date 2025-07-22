@@ -41,6 +41,7 @@ namespace BN.Apontamentos.Infrastructure.PlanosDeCorte
                         Nome = entity.Nm_plano_de_corte,
                         Circuitos = data.Select(c => c.Id_circuito)
                                         .Where(c => c is not null)
+                                        .Distinct()
                                         .ToList()
                     };
 
@@ -60,6 +61,8 @@ namespace BN.Apontamentos.Infrastructure.PlanosDeCorte
 
         private static string ObterQuery(ListarPlanoDeCorteQuery request)
         {
+            string filtro = request.IncluirSemTrecho ? "" : "INNER JOIN Trecho t ON t.id_plano_de_corte = pc.id_plano_de_corte";
+
             return @$"
                 SELECT
                     pc.id_plano_de_corte,
@@ -68,6 +71,7 @@ namespace BN.Apontamentos.Infrastructure.PlanosDeCorte
                 FROM PlanoDeCorte pc
 	                LEFT JOIN PlanoDeCorteCircuito pcc ON pcc.id_plano_de_corte = pc.id_plano_de_corte
 	                LEFT JOIN Circuito c ON c.id_circuito = pcc.id_circuito
+                    {filtro}
                 WHERE pc.dt_data_inativacao is NULL
                     {request.Descricao.AddDynamicParams("AND pc.nm_plano_de_corte = @descricao")}
                 ORDER BY pc.nm_plano_de_corte";

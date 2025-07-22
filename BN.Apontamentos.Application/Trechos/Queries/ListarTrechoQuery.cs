@@ -6,6 +6,6 @@ namespace BN.Apontamentos.Application.Trechos.Queries
     public class ListarTrechoQuery
         : IQueryRequest<IEnumerable<ListarTrechoResponse>>
     {
-        public int? IdPlanoDeCorte { get; set; }
+        public IEnumerable<int> IdPlanoDeCorte { get; set; }
     }
 }

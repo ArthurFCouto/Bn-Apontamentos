@@ -20,7 +20,7 @@ namespace BN.Apontamentos.UnitTests.Applications.Trechos.Validators
         public void ListarTrechoValidator_IdPlanoDeCorte_Tests(int id)
         {
             // Arrange
-            ListarTrechoQuery request = new() { IdPlanoDeCorte = id };
+            ListarTrechoQuery request = new() { IdPlanoDeCorte = [id] };
 
             // Act
             ValidationResult result = validator.Validate(request);
